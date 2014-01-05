@@ -1,0 +1,7 @@
+parameters:
+#    red_solidaria_main.example.class: RedSolidaria\MainBundle\Example
+
+services:
+#    red_solidaria_main.example:
+#        class: %red_solidaria_main.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

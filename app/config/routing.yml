@@ -1,0 +1,4 @@
+red_solidaria_main:
+    resource: "@RedSolidariaMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
