@@ -13,11 +13,11 @@ abstract class Persona implements UserInterface, \Serializable
     /**
      * @var integer
      *
-     * @ORM\Column(name="personaId", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $personaId;
+    private $id;
 
     /**
      * @var string
@@ -69,7 +69,7 @@ abstract class Persona implements UserInterface, \Serializable
      */
     public function getId()
     {
-        return $this->personaId;
+        return $this->id;
     }
 
     /**
@@ -229,7 +229,7 @@ abstract class Persona implements UserInterface, \Serializable
      */
     public function serialize() {
         return serialize(array(
-            $this->personaId,
+            $this->id,
             $this->username,
             $this->salt,
             $this->password,
@@ -241,7 +241,7 @@ abstract class Persona implements UserInterface, \Serializable
      */
     public function unserialize($serialized) {
         list (
-            $this->personaId,
+            $this->id,
             $this->username,
             $this->salt,
             $this->password,

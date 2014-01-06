@@ -13,13 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class PersonaJuridica extends Persona
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="personaJuridicaId", type="integer")
-     */
-    private $personaJuridicaId;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="cuit", type="string", length=255)
@@ -41,7 +34,7 @@ class PersonaJuridica extends Persona
      */
     public function getId()
     {
-        return $this->$personaJuridicaId;
+        return parent::getId();
     }
 
     /**
