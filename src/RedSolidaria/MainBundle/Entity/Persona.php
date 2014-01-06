@@ -7,7 +7,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Persona
  *
- * @ORM\Table()
+ * @ORM\Table(name="persona")
  * @ORM\Entity(repositoryClass="RedSolidaria\MainBundle\Entity\PersonaRepository")
  */
 class Persona implements UserInterface, \Serializable
