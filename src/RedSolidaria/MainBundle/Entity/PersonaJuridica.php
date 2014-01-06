@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PersonaJuridica
  *
- * @ORM\Table()
+ * @ORM\Table("personaJuridica")
  * @ORM\Entity(repositoryClass="RedSolidaria\MainBundle\Entity\PersonaJuridicaRepository")
  */
 class PersonaJuridica extends Persona
@@ -93,19 +93,27 @@ class PersonaJuridica extends Persona
     }
 
     public function eraseCredentials() {
-        
+        parent::eraseCredentials();
     }
 
     public function getRoles() {
-        
+        parent::getRoles();
     }
 
     public function serialize() {
-        
+        return serialize(array(
+            $this->id,
+            $this->cuit,
+            $this->razonSocial,
+        ));
     }
 
     public function unserialize($serialized) {
-        
+        list (
+            $this->id,
+            $this->cuit,
+            $this->razonSocial,
+        ) = unserialize($serialized);        
     }
 
 }

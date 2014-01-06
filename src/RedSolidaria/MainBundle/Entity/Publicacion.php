@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Publicacion
  *
- * @ORM\Table()
+ * @ORM\Table("publicacion")
  * @ORM\Entity(repositoryClass="RedSolidaria\MainBundle\Entity\PublicacionRepository")
  */
 class Publicacion

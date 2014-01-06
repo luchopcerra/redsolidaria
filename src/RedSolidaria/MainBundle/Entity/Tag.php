@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Tag
  *
- * @ORM\Table()
+ * @ORM\Table("tag")
  * @ORM\Entity(repositoryClass="RedSolidaria\MainBundle\Entity\TagRepository")
  */
 class Tag
