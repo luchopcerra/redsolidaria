@@ -3,6 +3,7 @@
 namespace RedSolidaria\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToOne;
 
 /**
  * Publicacion
@@ -25,8 +26,8 @@ class Publicacion
      * @var \stdClass
      *
      * @ORM\Column(name="autor", type="object")
-     * @OneToOne(targetEntity="Persona")
-     * @JoinColumn(name="autor_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Persona")
+     * @ORM\JoinColumn(name="autor_id", referencedColumnName="id")
      */
     private $autor;
 
@@ -76,8 +77,8 @@ class Publicacion
      * @var \stdClass
      *
      * @ORM\Column(name="ganador", type="object")
-     * @OneToOne(targetEntity="Persona")
-     * @JoinColumn(name="ganador_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Persona")
+     * @ORM\JoinColumn(name="ganador_id", referencedColumnName="id")
      */
     private $ganador;
 
@@ -85,10 +86,10 @@ class Publicacion
      * @var array
      *
      * @ORM\Column(name="tags", type="array")
-     * @ManyToMany(targetEntity="Tag")
-     * @JoinTable(name="publicacion_tags",
-     *      joinColumns        ={@JoinColumn(name="publicacion_id", referencedColumnName="id")},
-     *      inverseJoinColumns ={@JoinColumn(name="tag_id",         referencedColumnName="id", unique=true)}
+     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\JoinTable(name="publicacion_tags",
+     *      joinColumns        ={@ORM\JoinColumn(name="publicacion_id", referencedColumnName="id")},
+     *      inverseJoinColumns ={@ORM\JoinColumn(name="tag_id",         referencedColumnName="id", unique=true)}
      * )
      */
     private $tags;

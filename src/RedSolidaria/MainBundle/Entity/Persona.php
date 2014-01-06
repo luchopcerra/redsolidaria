@@ -6,20 +6,18 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Persona
- *
- * @ORM\Table(name="persona")
- * @ORM\Entity(repositoryClass="RedSolidaria\MainBundle\Entity\PersonaRepository")
+ * @ORM\MappedSuperclass
  */
-class Persona implements UserInterface, \Serializable
+abstract class Persona implements UserInterface, \Serializable
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="personaId", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $personaId;
 
     /**
      * @var string
@@ -71,7 +69,7 @@ class Persona implements UserInterface, \Serializable
      */
     public function getId()
     {
-        return $this->id;
+        return $this->personaId;
     }
 
     /**
@@ -231,7 +229,7 @@ class Persona implements UserInterface, \Serializable
      */
     public function serialize() {
         return serialize(array(
-            $this->id,
+            $this->personaId,
             $this->username,
             $this->salt,
             $this->password,
@@ -243,7 +241,7 @@ class Persona implements UserInterface, \Serializable
      */
     public function unserialize($serialized) {
         list (
-            $this->id,
+            $this->personaId,
             $this->username,
             $this->salt,
             $this->password,

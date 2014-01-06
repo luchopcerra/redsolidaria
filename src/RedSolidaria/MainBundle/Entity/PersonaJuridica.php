@@ -15,11 +15,9 @@ class PersonaJuridica extends Persona
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="personaJuridicaId", type="integer")
      */
-    private $id;
+    private $personaJuridicaId;
 
     /**
      * @var string
@@ -43,7 +41,7 @@ class PersonaJuridica extends Persona
      */
     public function getId()
     {
-        return $this->id;
+        return $this->$personaJuridicaId;
     }
 
     /**
@@ -102,7 +100,7 @@ class PersonaJuridica extends Persona
 
     public function serialize() {
         return serialize(array(
-            $this->id,
+            $this->$personaJuridicaId,
             $this->cuit,
             $this->razonSocial,
         ));
@@ -110,7 +108,7 @@ class PersonaJuridica extends Persona
 
     public function unserialize($serialized) {
         list (
-            $this->id,
+            $this->$personaJuridicaId,
             $this->cuit,
             $this->razonSocial,
         ) = unserialize($serialized);        

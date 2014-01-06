@@ -3,7 +3,6 @@
 namespace RedSolidaria\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * PersonaFisica
  *
@@ -15,11 +14,9 @@ class PersonaFisica extends Persona
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="personaFisicaId", type="integer")
      */
-    private $id;
+    private $personaFisicaId;
 
     /**
      * @var string
@@ -57,7 +54,7 @@ class PersonaFisica extends Persona
      */
     public function getId()
     {
-        return $this->id;
+        return $this->personaFisicaId;
     }
 
     /**
@@ -165,7 +162,7 @@ class PersonaFisica extends Persona
             $this->apellidos,
             $this->cuil,
             $this->dni,
-            $this->id,
+            $this->personaFisicaId,
             $this->nombres,
         ));
     }
@@ -175,7 +172,7 @@ class PersonaFisica extends Persona
             $this->apellidos,
             $this->cuil,
             $this->dni,
-            $this->id,
+            $this->personaFisicaId,
             $this->nombres,
         ) = unserialize($serialized);
     }
