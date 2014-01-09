@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {# este block "head" se agrego, no viene por defecto en el template #}
+        {% block head %}{% endblock %}
+       
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
+    <body style>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

@@ -6,6 +6,9 @@ security:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
+#
+#aca se especifica de donde se obtienen los usuarios de la aplicacion
+#
     providers:
         in_memory:
             memory:
@@ -13,6 +16,10 @@ security:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
 
+#
+#aca se especifica que partes de la aplicacion estan protegidas y se necesitan
+#credenciales para poder acceder
+# 
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
@@ -34,5 +41,8 @@ security:
             #http_basic:
             #    realm: "Secured Demo Area"
 
+#
+#aca se especifica que rol puede acceder a determinadas partes de la aplicacion
+#
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
