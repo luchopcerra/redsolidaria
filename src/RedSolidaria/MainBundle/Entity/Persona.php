@@ -7,6 +7,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Persona
  * @ORM\MappedSuperclass
+ * @ORM\Table("personaFisica")
+ * @ORM\Entity(repositoryClass="RedSolidaria\MainBundle\Entity\PersonaFisicaRepository")
  */
 abstract class Persona implements UserInterface, \Serializable
 {
@@ -61,7 +63,23 @@ abstract class Persona implements UserInterface, \Serializable
      */
     private $isActive;
 
+    /**
+     * @var \stdClass
+     *
+     * @ORM\Column(name="", type="")
+     */    
+    private $persona;
+    
+    function __construct($username, $password, $salt, $email, $direccion, $isActive) {
+        $this->username = $username;
+        $this->password = $password;
+        $this->salt = $salt;
+        $this->email = $email;
+        $this->direccion = $direccion;
+        $this->isActive = $isActive;
+    }
 
+    
     /**
      * Get id
      *

@@ -28,8 +28,11 @@ class Tag
      */
     private $nombre;
 
-
-    /**
+    function __construct($nombre) {
+        $this->nombre = $nombre;
+    }
+    
+        /**
      * Get id
      *
      * @return integer 

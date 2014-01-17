@@ -27,7 +27,7 @@
 {% endblock %}
         
 {% block javascripts %}
-    {% javascripts  '@RedSolidariaMainBundle/Resources/public/jquery-ui-1.10.3/jquery-1.9.1.js' %}
+{#    {% javascripts  '@RedSolidariaMainBundle/Resources/public/jquery-ui-1.10.3/jquery-1.9.1.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
@@ -36,6 +36,12 @@
     {% endjavascripts %}
 
     {% javascripts '@RedSolidariaMainBundle/Resources/public/bootstrap-3.0.3/js/bootstrap.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}#}
+    {% javascripts  '@RedSolidariaMainBundle/Resources/public/jquery-ui-1.10.3/jquery-1.9.1.js'
+                    '@RedSolidariaMainBundle/Resources/public/jquery-ui-1.10.3/ui/jquery-ui.js'
+                    '@RedSolidariaMainBundle/Resources/public/bootstrap-3.0.3/js/bootstrap.min.js'
+    %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

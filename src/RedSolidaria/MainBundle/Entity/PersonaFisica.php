@@ -38,6 +38,16 @@ class PersonaFisica extends Persona
      * @ORM\Column(name="cuil", type="string", length=15)
      */
     private $cuil;
+    
+    function __construct($username, $password, $salt, $email, $direccion, $isActive, $dni, $nombres, $apellidos, $cuil) {
+        
+        parent::__construct($username, $password, $salt, $email, $direccion, $isActive);
+
+        $this->dni = $dni;
+        $this->nombres = $nombres;
+        $this->apellidos = $apellidos;
+        $this->cuil = $cuil;
+    }
 
 
     /**
@@ -95,7 +105,6 @@ class PersonaFisica extends Persona
     {
         return $this->nombres;
     }
-
     /**
      * Set apellidos
      *
@@ -151,21 +160,29 @@ class PersonaFisica extends Persona
     }
 
     public function serialize() {
+        //el id lo obtengo afuera del serialize porque no se permite la llamada a metodos o funciones
+        //adentro de esa llamada del serialize 
+        $id = parent::getId();
+
         return serialize(array(
             $this->apellidos,
             $this->cuil,
             $this->dni,
-            $this->personaFisicaId,
+            $id,
             $this->nombres,
         ));
     }
 
     public function unserialize($serialized) {
+        //el id lo obtengo afuera del list porque no se permite la llamada a metodos o funciones
+        //adentro de esa llamada del list
+        $id = parent::getId();
+        
         list (
             $this->apellidos,
             $this->cuil,
             $this->dni,
-            $this->personaFisicaId,
+            $id,
             $this->nombres,
         ) = unserialize($serialized);
     }

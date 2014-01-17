@@ -1,0 +1,18 @@
+{% extends 'RedSolidariaMainBundle:Default:index.html.twig' %}
+
+{% block body %}
+
+    {% if error %}
+       <div>{{ error.message }}</div>
+    {% endif %}
+
+    <form action="{{ path('login_check') }}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="_username" value="" />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="_password" />
+
+        <button type="submit">login</button>
+    </form>
+{% endblock %}

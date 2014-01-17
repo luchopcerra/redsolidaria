@@ -4,6 +4,7 @@ namespace RedSolidaria\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToOne;
+use DateTime;
 
 /**
  * Publicacion
@@ -93,8 +94,19 @@ class Publicacion
      * )
      */
     private $tags;
+    
+    function __construct($autor, $titulo, $descripcion, $activa, $fechaInicio, $fechaFin, $ubicacion, $tags) {
+        $this->autor = $autor;
+        $this->titulo = $titulo;
+        $this->descripcion = $descripcion;
+        $this->activa = $activa;
+        $this->fechaInicio = $fechaInicio;
+        $this->fechaFin = $fechaFin;
+        $this->ubicacion = $ubicacion;
+        $this->tags = $tags;
+    }
 
-
+    
     /**
      * Get id
      *

@@ -1,3 +1,21 @@
 red_solidaria_main_homepage:
-    pattern:  /{name}
+    pattern:  /
     defaults: { _controller: RedSolidariaMainBundle:Default:index }
+
+red_solidaria_prueba_form:
+    pattern:  /wasd/{name}
+    defaults: { _controller: RedSolidariaMainBundle:Default:formTest }
+    
+task_success:
+    pattern:  /task_success
+    defaults: { _controller: RedSolidariaMainBundle:Default:taskSuccess }
+
+login:
+    path:   /login
+    defaults:  { _controller: RedSolidariaMainBundle:Default:login }
+
+login_check:
+    path:   /task_success/login_check
+
+logout:
+    path:   /logout
