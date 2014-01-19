@@ -6,8 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * PersonaJuridica
- *
- * @ORM\Table("personaJuridica")
  * @ORM\Entity(repositoryClass="RedSolidaria\MainBundle\Entity\PersonaJuridicaRepository")
  */
 class PersonaJuridica extends Persona
@@ -26,6 +24,13 @@ class PersonaJuridica extends Persona
      */
     private $razonSocial;
 
+    function __construct($username, $password, $salt, $email, $direccion, $isActive, $cuit, $razonSocial) {
+        
+        parent::__construct($username, $password, $salt, $email, $direccion, $isActive);
+
+        $this->cuit = $cuit;
+        $this->razonSocial = $razonSocial;
+    }
 
     /**
      * Get id

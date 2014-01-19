@@ -4,11 +4,14 @@ namespace RedSolidaria\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * Persona
- * @ORM\MappedSuperclass
- * @ORM\Table("personaFisica")
- * @ORM\Entity(repositoryClass="RedSolidaria\MainBundle\Entity\PersonaFisicaRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="tipoPersona", type="string")
+ * @ORM\DiscriminatorMap({"personaFisica" = "PersonaFisica","personaJuridica" = "PersonaJuridica"})
+ * @ORM\Table("persona")
+ * @ORM\Entity(repositoryClass="RedSolidaria\MainBundle\Entity\Persona")
  */
 abstract class Persona implements UserInterface, \Serializable
 {
@@ -63,13 +66,6 @@ abstract class Persona implements UserInterface, \Serializable
      */
     private $isActive;
 
-    /**
-     * @var \stdClass
-     *
-     * @ORM\Column(name="", type="")
-     */    
-    private $persona;
-    
     function __construct($username, $password, $salt, $email, $direccion, $isActive) {
         $this->username = $username;
         $this->password = $password;

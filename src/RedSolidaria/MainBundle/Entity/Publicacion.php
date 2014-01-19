@@ -26,9 +26,9 @@ class Publicacion
     /**
      * @var \stdClass
      *
-     * @ORM\Column(name="autor", type="object")
-     * @ORM\OneToOne(targetEntity="Persona")
-     * @ORM\JoinColumn(name="autor_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Persona", cascade={"persist"})
+     * @ORM\JoinColumn(name="autorPersonaId", referencedColumnName="id")
+     * 
      */
     private $autor;
 
@@ -77,20 +77,18 @@ class Publicacion
     /**
      * @var \stdClass
      *
-     * @ORM\Column(name="ganador", type="object")
-     * @ORM\OneToOne(targetEntity="Persona")
-     * @ORM\JoinColumn(name="ganador_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Persona", cascade={"persist"})
+     * @ORM\JoinColumn(name="ganadorPersonaId", referencedColumnName="id")
      */
     private $ganador;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="tags", type="array")
-     * @ORM\ManyToMany(targetEntity="Tag")
-     * @ORM\JoinTable(name="publicacion_tags",
-     *      joinColumns        ={@ORM\JoinColumn(name="publicacion_id", referencedColumnName="id")},
-     *      inverseJoinColumns ={@ORM\JoinColumn(name="tag_id",         referencedColumnName="id", unique=true)}
+     * @ORM\ManyToMany(targetEntity="Tag", cascade={"persist"})
+     * @ORM\JoinTable(name="publicacionTags",
+     *      joinColumns        ={@ORM\JoinColumn(name="publicacionId", referencedColumnName="id")},
+     *      inverseJoinColumns ={@ORM\JoinColumn(name="tagId",         referencedColumnName="id", unique=true)}
      * )
      */
     private $tags;
@@ -105,7 +103,6 @@ class Publicacion
         $this->ubicacion = $ubicacion;
         $this->tags = $tags;
     }
-
     
     /**
      * Get id

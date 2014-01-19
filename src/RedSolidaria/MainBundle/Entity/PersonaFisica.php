@@ -3,10 +3,9 @@
 namespace RedSolidaria\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * PersonaFisica
- *
- * @ORM\Table("personaFisica")
  * @ORM\Entity(repositoryClass="RedSolidaria\MainBundle\Entity\PersonaFisicaRepository")
  */
 class PersonaFisica extends Persona

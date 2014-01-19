@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\SecurityContext;
 use RedSolidaria\MainBundle\Entity\PersonaFisica;
+use RedSolidaria\MainBundle\Entity\PersonaJuridica;
 use RedSolidaria\MainBundle\Entity\PersonaRepository;
 use RedSolidaria\MainBundle\Entity\Publicacion;
 use DateTime;
@@ -38,9 +39,9 @@ class DefaultController extends Controller{
     }
 
     public function indexAction(){
+        $em = $this->getDoctrine()->getManager();
         
-        
-        /*for ($i=0;$i<3;$i++){
+        for ($i=0;$i<5;$i++){
             $p = new Publicacion(
                 new PersonaFisica(
                     "__tito".$i,
@@ -53,7 +54,7 @@ class DefaultController extends Controller{
                     "__Tito".$i, 
                     "Lui",
                     "987654321"
-                ), 
+                ),
                 "Publicacion_".$i,
                 "descripcion de la publicacion " .$i, 
                 true, 
@@ -66,13 +67,37 @@ class DefaultController extends Controller{
                     new Tag("un tag".$i*rand(1,50000))
                 )
             );
-
-            $em = $this->getDoctrine()->getManager();
+            
+            /*$t = new PersonaFisica(
+                    "__tito".$i,
+                    "tito",
+                    "salt", 
+                    "tito@email.com", 
+                    "direccion", 
+                    true, 
+                    "123456789",
+                    "__Tito".$i, 
+                    "Lui",
+                    "987654321"
+                );
+            $p = new PersonaJuridica(
+                    "__pepe".$i,
+                    "pepe",
+                    "salt", 
+                    "pepe@email.com", 
+                    "direccion", 
+                    true,
+                    "987654321",
+                    "__Pepe".$i
+                );*/
+            
+            //$em->persist($t);
             $em->persist($p);
             $em->flush();
-        }*/
-        $p = $this->getDoctrine()->getRepository('RedSolidariaMainBundle:PersonaFisica');   
-        print_r($p->findAll());
+        }
+
+//        $p = $this->getDoctrine()->getRepository('RedSolidariaMainBundle:PersonaFisica');   
+//        print_r($p->findAll());
         return new Response('Created publicacion id ');
     }
 
