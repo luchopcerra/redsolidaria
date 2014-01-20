@@ -1,7 +1,7 @@
 security:
     encoders:
 #        Symfony\Component\Security\Core\User\User: plaintext
-        RedSolidaria\MainBundle\Entity\Persona: plaintext
+        RedSolidaria\MainBundle\Entity\Persona: md5
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -19,8 +19,8 @@ security:
 #                users:
 #                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
 #                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-        user_db:
-            entity: { class: RedSolidariaMainBundle:PersonaFisica, property: username }
+        users:
+            entity: { class: RedSolidariaMainBundle:Persona, property: username }
 #
 #aca se especifica que partes de la aplicacion estan protegidas y se necesitan
 #credenciales para poder acceder

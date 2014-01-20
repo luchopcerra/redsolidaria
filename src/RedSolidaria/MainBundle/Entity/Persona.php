@@ -22,49 +22,49 @@ class Persona implements UserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255)
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
      */
-    private $password;
+    protected $password;
 
     /**
      * @var string
      *
      * @ORM\Column(name="salt", type="string", length=255)
      */
-    private $salt;
+    protected $salt;
 
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string
      *
      * @ORM\Column(name="direccion", type="string", length=255)
      */
-    private $direccion;
+    protected $direccion;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="isActive", type="boolean")
      */
-    private $isActive;
+    protected $isActive;
 
 //    function __construct($username, $password, $salt, $email, $direccion, $isActive) {
 //        $this->username = $username;

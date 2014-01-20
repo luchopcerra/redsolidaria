@@ -10,6 +10,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PersonaJuridica extends Persona
 {
+    
+   /**
+     * @var integer
+     *
+     * @ORM\Column(name="pjid", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
     /**
      * @var string
      *
@@ -41,7 +51,7 @@ class PersonaJuridica extends Persona
      */
     public function getId()
     {
-        return parent::getId();
+        return $this->id;
     }
 
     /**
@@ -91,16 +101,16 @@ class PersonaJuridica extends Persona
     }
 
     public function eraseCredentials() {
-        parent::eraseCredentials();
+        return parent::eraseCredentials();
     }
 
     public function getRoles() {
-        parent::getRoles();
+        return parent::getRoles();
     }
 
     public function serialize() {
         return serialize(array(
-            $this->$personaJuridicaId,
+            $this->id,
             $this->cuit,
             $this->razonSocial,
         ));
@@ -108,10 +118,9 @@ class PersonaJuridica extends Persona
 
     public function unserialize($serialized) {
         list (
-            $this->$personaJuridicaId,
+            $this->id,
             $this->cuit,
             $this->razonSocial,
         ) = unserialize($serialized);        
     }
-
 }

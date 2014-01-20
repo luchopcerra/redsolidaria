@@ -16,12 +16,18 @@ use DateTime;
 class DefaultController extends Controller{
     
     public function formTestAction($name){
+
+        $request = Request::createFromGlobals();
+        print_r($request);
+        echo "aaaaaaaaaaaaa";
+        
         $form = $this->createFormBuilder(new Tag("hola tag"))
             ->add('nombre','text')
             ->add('save', 'submit')
             ->getForm();
 
-        $request = Request::createFromGlobals();
+        
+        
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -41,7 +47,7 @@ class DefaultController extends Controller{
     public function indexAction(){
         $em = $this->getDoctrine()->getManager();
         
-        for ($i=0;$i<5;$i++){
+        for ($i=0;$i<1;$i++){
             /*$p = new Publicacion(
                 new PersonaFisica(
                     "pepe".$i,
@@ -66,9 +72,9 @@ class DefaultController extends Controller{
                 )
             );*/
 
-            $t = new PersonaFisica(
-                    "pepe".$i,
-                    "pepe",
+           /* $t = new PersonaFisica(
+                    "pp",
+                    "pp",
                     "tito@email.com", 
                     "direccion", 
                     "123456789",
@@ -76,19 +82,28 @@ class DefaultController extends Controller{
                     "Lui",
                     "987654321"
                 );
-            /*$p = new PersonaJuridica(
-                    "pepe".$i,
-                    "pepe",
-                    "tito@email.com", 
-                    "direccion", 
-                    "123456789",
-                    "__Tito".$i, 
-                    "Lui",
-                    "987654321"
-                );*/
+
+            $factory = $this->get('security.encoder_factory');
+            $encoder = $factory->getEncoder($t);
+            $password = $encoder->encodePassword($t->getPassword(), $t->getSalt());
+            $t->setPassword($password);*/
+
+            $p = new PersonaJuridica(
+                "pj",
+                "pj",
+                "tito@email.com", 
+                "direccion", 
+                "123456789",
+                "razon social"
+            );
             
-            $em->persist($t);
-//            $em->persist($p);
+            $factory = $this->get('security.encoder_factory');
+            $encoder = $factory->getEncoder($p);
+            $password = $encoder->encodePassword($p->getPassword(), $p->getSalt());
+            $p->setPassword($password);
+            
+//            $em->persist($t);
+            $em->persist($p);
             $em->flush();
         }
 

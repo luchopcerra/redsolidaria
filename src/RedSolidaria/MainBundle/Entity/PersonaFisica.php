@@ -10,33 +10,43 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PersonaFisica extends Persona
 {
+    
+   /**
+     * @var integer
+     *
+     * @ORM\Column(name="pfid", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
     /**
      * @var string
      *
      * @ORM\Column(name="dni", type="string", length=15)
      */
-    private $dni;
+    protected $dni;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nombres", type="string", length=255)
      */
-    private $nombres;
+    protected $nombres;
 
     /**
      * @var string
      *
      * @ORM\Column(name="apellidos", type="string", length=255)
      */
-    private $apellidos;
+    protected $apellidos;
 
     /**
      * @var string
      *
      * @ORM\Column(name="cuil", type="string", length=15)
      */
-    private $cuil;
+    protected $cuil;
     
     function __construct($username, $password, $email, $direccion, $dni, $nombres, $apellidos, $cuil) {
         
@@ -58,7 +68,8 @@ class PersonaFisica extends Persona
      */
     public function getId()
     {
-        return parent::getId();
+//        return parent::getId();
+        return $this->id;
     }
 
     /**
@@ -157,36 +168,26 @@ class PersonaFisica extends Persona
     }
 
     public function getRoles() {
-        return array('ROLE_ADMIN');
-//        return parent::getRoles();
+        return parent::getRoles();
     }
 
     public function serialize() {
-        //el id lo obtengo afuera del serialize porque no se permite la llamada a metodos o funciones
-        //adentro de esa llamada del serialize 
-        $id = parent::getId();
-
         return serialize(array(
+            $this->id,
             $this->apellidos,
             $this->cuil,
             $this->dni,
-            $id,
             $this->nombres,
         ));
     }
 
     public function unserialize($serialized) {
-        //el id lo obtengo afuera del list porque no se permite la llamada a metodos o funciones
-        //adentro de esa llamada del list
-        $id = parent::getId();
-        
         list (
+            $this->id,             
             $this->apellidos,
             $this->cuil,
             $this->dni,
-            $id,
             $this->nombres,
         ) = unserialize($serialized);
     }
-
 }
