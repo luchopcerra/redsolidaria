@@ -42,14 +42,12 @@ class DefaultController extends Controller{
         $em = $this->getDoctrine()->getManager();
         
         for ($i=0;$i<5;$i++){
-            $p = new Publicacion(
+            /*$p = new Publicacion(
                 new PersonaFisica(
-                    "__tito".$i,
-                    "tito",
-                    "salt", 
+                    "pepe".$i,
+                    "pepe",
                     "tito@email.com", 
                     "direccion", 
-                    true, 
                     "123456789",
                     "__Tito".$i, 
                     "Lui",
@@ -66,33 +64,31 @@ class DefaultController extends Controller{
                     new Tag("un tag".$i*rand(1,50000)),
                     new Tag("un tag".$i*rand(1,50000))
                 )
-            );
-            
-            /*$t = new PersonaFisica(
-                    "__tito".$i,
-                    "tito",
-                    "salt", 
+            );*/
+
+            $t = new PersonaFisica(
+                    "pepe".$i,
+                    "pepe",
                     "tito@email.com", 
                     "direccion", 
-                    true, 
                     "123456789",
                     "__Tito".$i, 
                     "Lui",
                     "987654321"
                 );
-            $p = new PersonaJuridica(
-                    "__pepe".$i,
+            /*$p = new PersonaJuridica(
+                    "pepe".$i,
                     "pepe",
-                    "salt", 
-                    "pepe@email.com", 
+                    "tito@email.com", 
                     "direccion", 
-                    true,
-                    "987654321",
-                    "__Pepe".$i
+                    "123456789",
+                    "__Tito".$i, 
+                    "Lui",
+                    "987654321"
                 );*/
             
-            //$em->persist($t);
-            $em->persist($p);
+            $em->persist($t);
+//            $em->persist($p);
             $em->flush();
         }
 
@@ -108,12 +104,15 @@ class DefaultController extends Controller{
     public function loginAction(Request $request){
         
         $session = $request->getSession();
-
+//        print_r($request);
+//        print_r($session);
         // get the login error if there is one
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+            echo "if";
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
         }
         else {
+            echo "else";
             $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }

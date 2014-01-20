@@ -1,6 +1,7 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+#        Symfony\Component\Security\Core\User\User: plaintext
+        RedSolidaria\MainBundle\Entity\Persona: plaintext
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -10,12 +11,16 @@ security:
 #aca se especifica de donde se obtienen los usuarios de la aplicacion
 #
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-
+#        chain_provider:
+#            chain:
+#                providers: [in_memory,user_db]
+#        in_memory:
+#            memory:
+#                users:
+#                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+#                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        user_db:
+            entity: { class: RedSolidariaMainBundle:PersonaFisica, property: username }
 #
 #aca se especifica que partes de la aplicacion estan protegidas y se necesitan
 #credenciales para poder acceder
@@ -39,7 +44,7 @@ security:
 #            logout:
 #                path:   /logout
 #                target: /
-#
+
 #aca se especifica que rol puede acceder a determinadas partes de la aplicacion
 #
     access_control:

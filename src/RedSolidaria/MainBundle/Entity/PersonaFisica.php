@@ -38,10 +38,12 @@ class PersonaFisica extends Persona
      */
     private $cuil;
     
-    function __construct($username, $password, $salt, $email, $direccion, $isActive, $dni, $nombres, $apellidos, $cuil) {
+    function __construct($username, $password, $email, $direccion, $dni, $nombres, $apellidos, $cuil) {
         
-        parent::__construct($username, $password, $salt, $email, $direccion, $isActive);
+        parent::__construct($username,$password);
 
+        $this->email = $email;
+        $this->direccion = $direccion;
         $this->dni = $dni;
         $this->nombres = $nombres;
         $this->apellidos = $apellidos;
@@ -155,7 +157,8 @@ class PersonaFisica extends Persona
     }
 
     public function getRoles() {
-        parent::getRoles();
+        return array('ROLE_ADMIN');
+//        return parent::getRoles();
     }
 
     public function serialize() {

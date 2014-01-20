@@ -11,9 +11,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\DiscriminatorColumn(name="tipoPersona", type="string")
  * @ORM\DiscriminatorMap({"personaFisica" = "PersonaFisica","personaJuridica" = "PersonaJuridica"})
  * @ORM\Table("persona")
- * @ORM\Entity(repositoryClass="RedSolidaria\MainBundle\Entity\Persona")
+ * @ORM\Entity(repositoryClass="RedSolidaria\MainBundle\Entity\PersonaRepository")
  */
-abstract class Persona implements UserInterface, \Serializable
+class Persona implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -66,16 +66,23 @@ abstract class Persona implements UserInterface, \Serializable
      */
     private $isActive;
 
-    function __construct($username, $password, $salt, $email, $direccion, $isActive) {
+//    function __construct($username, $password, $salt, $email, $direccion, $isActive) {
+//        $this->username = $username;
+//        $this->password = $password;
+//        $this->salt = $salt;
+//        $this->email = $email;
+//        $this->direccion = $direccion;
+//        $this->isActive = $isActive;
+//    }
+
+    public function __construct($username,$password) {
+      
         $this->username = $username;
         $this->password = $password;
-        $this->salt = $salt;
-        $this->email = $email;
-        $this->direccion = $direccion;
-        $this->isActive = $isActive;
+        $this->isActive = true;
+        $this->salt = md5(uniqid(null, true));
     }
 
-    
     /**
      * Get id
      *
@@ -235,7 +242,7 @@ abstract class Persona implements UserInterface, \Serializable
      * @inheritDoc
      */
     public function getRoles() {
-        return array('ROLE_USER');
+        return array('ROLE_ADMIN');
     }
     
     /**
