@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 use RedSolidaria\MainBundle\Entity\PersonaFisica;
 use RedSolidaria\MainBundle\Entity\PersonaJuridica;
 use RedSolidaria\MainBundle\Entity\PersonaRepository;
+use RedSolidaria\MainBundle\Entity\PublicacionRepository;
 use RedSolidaria\MainBundle\Entity\Publicacion;
 use DateTime;
 
@@ -17,17 +18,12 @@ class DefaultController extends Controller{
     
     public function formTestAction($name){
 
-        $request = Request::createFromGlobals();
-        print_r($request);
-        echo "aaaaaaaaaaaaa";
-        
         $form = $this->createFormBuilder(new Tag("hola tag"))
             ->add('nombre','text')
             ->add('save', 'submit')
             ->getForm();
 
-        
-        
+        $request = Request::createFromGlobals();
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -45,22 +41,47 @@ class DefaultController extends Controller{
     }
 
     public function indexAction(){
+        $ultimasPublicaciones = $this->ultimasPublicaciones();
+        print_r($ultimasPublicaciones);
+        return $this->render(
+            'RedSolidariaMainBundle:home:index.html.twig',
+            array(
+                'ultimasPublicaciones' => $ultimasPublicaciones,
+            )
+        );
+    }
+    /*
+     * esta funcion devuelve las ultimas 5 publicaciones creadas
+     */
+    private function ultimasPublicaciones(){
+        
+        return $this->getDoctrine()->getRepository('RedSolidariaMainBundle:Publicacion')->ultimasPublicaciones();
+    }
+    
+    private function crearUsers(){
         $em = $this->getDoctrine()->getManager();
         
-        for ($i=0;$i<1;$i++){
-            /*$p = new Publicacion(
-                new PersonaFisica(
-                    "pepe".$i,
-                    "pepe",
-                    "tito@email.com", 
-                    "direccion", 
-                    "123456789",
-                    "__Tito".$i, 
-                    "Lui",
-                    "987654321"
-                ),
-                "Publicacion_".$i,
-                "descripcion de la publicacion " .$i, 
+        for ($i=0;$i<15;$i++){
+            
+            $pf = new PersonaFisica(
+                "ppp".$i,
+                "ppp",
+                "tito@email.com", 
+                "direccion", 
+                "123456789",
+                "__Tito".$i, 
+                "Lui",
+                "987654321"
+            );
+            $factory = $this->get('security.encoder_factory');
+            $encoder = $factory->getEncoder($pf);
+            $password = $encoder->encodePassword($pf->getPassword(), $pf->getSalt());
+            $pf->setPassword($password);
+            
+            $p = new Publicacion(
+                $pf,
+                "Publicacion nueva_".$i,
+                "descripcion de la publicacion nueva" .$i, 
                 true, 
                 new DateTime(),
                 new DateTime(),
@@ -70,7 +91,7 @@ class DefaultController extends Controller{
                     new Tag("un tag".$i*rand(1,50000)),
                     new Tag("un tag".$i*rand(1,50000))
                 )
-            );*/
+            );
 
            /* $t = new PersonaFisica(
                     "pp",
@@ -88,19 +109,16 @@ class DefaultController extends Controller{
             $password = $encoder->encodePassword($t->getPassword(), $t->getSalt());
             $t->setPassword($password);*/
 
-            $p = new PersonaJuridica(
+           /* $p = new PersonaJuridica(
                 "pj",
                 "pj",
                 "tito@email.com", 
                 "direccion", 
                 "123456789",
                 "razon social"
-            );
+            );*/
             
-            $factory = $this->get('security.encoder_factory');
-            $encoder = $factory->getEncoder($p);
-            $password = $encoder->encodePassword($p->getPassword(), $p->getSalt());
-            $p->setPassword($password);
+            
             
 //            $em->persist($t);
             $em->persist($p);
