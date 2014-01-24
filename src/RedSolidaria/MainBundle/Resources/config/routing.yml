@@ -12,7 +12,7 @@ task_success:
 
 mostrarPublicacion:
     pattern:  /publicacion/{id}
-    defaults: { _controller: RedSolidariaMainBundle:Default:mostrarPublicacion }
+    defaults: { _controller: RedSolidariaMainBundle:publicacion:show }
 
 login:
     path:   /login
