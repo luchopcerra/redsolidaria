@@ -19,7 +19,7 @@ class PublicacionRepository extends EntityRepository {
     public function ultimasPublicaciones(){
         
         return $this->getEntityManager()
-                    ->createQuery('SELECT p.titulo FROM RedSolidariaMainBundle:Publicacion p ORDER BY p.id DESC')
+                    ->createQuery('SELECT p.id, p.titulo, p.descripcion, p.fechaFin FROM RedSolidariaMainBundle:Publicacion p ORDER BY p.id DESC')
                     ->setMaxResults(5)
                     ->getResult();
     }

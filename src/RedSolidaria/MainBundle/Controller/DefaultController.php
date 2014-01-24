@@ -42,13 +42,25 @@ class DefaultController extends Controller{
 
     public function indexAction(){
         $ultimasPublicaciones = $this->ultimasPublicaciones();
-        print_r($ultimasPublicaciones);
+//        print_r($ultimasPublicaciones);
         return $this->render(
             'RedSolidariaMainBundle:home:index.html.twig',
             array(
                 'ultimasPublicaciones' => $ultimasPublicaciones,
             )
         );
+    }
+
+    public function mostrarPublicacionAction($id){
+//        $ultimasPublicaciones = $this->ultimasPublicaciones();
+//        print_r($ultimasPublicaciones);
+//        return $this->render(
+//            'RedSolidariaMainBundle:home:index.html.twig',
+//            array(
+//                'ultimasPublicaciones' => $ultimasPublicaciones,
+//            )
+//        );
+         return new \Symfony\Component\HttpFoundation\Response("entro a mostrarPublicacionAction con id $id");
     }
     /*
      * esta funcion devuelve las ultimas 5 publicaciones creadas
@@ -141,11 +153,9 @@ class DefaultController extends Controller{
 //        print_r($session);
         // get the login error if there is one
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
-            echo "if";
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
         }
         else {
-            echo "else";
             $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }

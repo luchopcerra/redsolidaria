@@ -28,22 +28,21 @@ security:
     firewalls:
 
         dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+            pattern:                ^/(_(profiler|wdt)|css|images|js)/
+            security:               false
 
         login:
-            pattern:  ^/demo/secured/login$
-            security: false
+            pattern:                ^/demo/secured/login$
+            security:               false
 
         secured_area:
-            pattern:    ^/task_success
-#           anonymous:  ~
+            pattern:                ^/task_success
             form_login:
-                login_path:  login
-                check_path:  login_check
-#            logout:
-#                path:   /logout
-#                target: /
+                login_path:         login
+                check_path:         login_check
+            logout:
+                path:               /logout
+                target:             /
 
 #aca se especifica que rol puede acceder a determinadas partes de la aplicacion
 #
