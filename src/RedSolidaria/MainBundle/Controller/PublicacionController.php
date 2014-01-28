@@ -28,9 +28,9 @@ class PublicacionController extends Controller{
         if ($form->isValid()) {
             // perform some action...           
 
-            return $this->redirect($this->generateUrl('task_success'));
+            return $this->redirect($this->generateUrl('red_solidaria_main_homepage'));
         }           
-            
+        
         
         $publicacion = $this->getDoctrine()
             ->getRepository('RedSolidariaMainBundle:Publicacion')
