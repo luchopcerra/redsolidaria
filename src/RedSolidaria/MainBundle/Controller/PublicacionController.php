@@ -16,8 +16,22 @@ use DateTime;
 
 class PublicacionController extends Controller{
     
-    public function showAction($id){
+    public function showAction($id, Request $request){
     
+        
+        $form = $this->createFormBuilder()
+            ->add('confirmar', 'submit')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            // perform some action...           
+
+            return $this->redirect($this->generateUrl('task_success'));
+        }           
+            
+        
         $publicacion = $this->getDoctrine()
             ->getRepository('RedSolidariaMainBundle:Publicacion')
             ->find($id);
@@ -27,7 +41,7 @@ class PublicacionController extends Controller{
                     'No hay publicaciones con ID ' . $id
             );
         }
-        else return $this->render("RedSolidariaMainBundle:home:publicacionShow.html.twig", array('publicacion'=>$publicacion));
+        else return $this->render("RedSolidariaMainBundle:home:publicacionShow.html.twig", array('publicacion'=>$publicacion, 'form' => $form->createView()));
         
         }
         
