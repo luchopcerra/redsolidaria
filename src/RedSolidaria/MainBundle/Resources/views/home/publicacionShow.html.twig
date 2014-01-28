@@ -6,30 +6,56 @@
 
 {% block body %}
 <div class="container">
-    
+
     {{ include ('RedSolidariaMainBundle:componentes:navbar.html.twig') }}
 
     <ol class="breadcrumb">
-      <li><a href="{{path('red_solidaria_main_homepage')}}">Home</a></li>
-      <li><a href="#" class="active">publicación{{publicacion.id}}</a></li>
+        <li><a href="{{path('red_solidaria_main_homepage')}}">Home</a></li>
+        <li><a href="#" class="active">publicación{{publicacion.id}}</a></li>
     </ol>
-    
-  <div class="panel panel-default">
+
+    <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">{{ publicacion.titulo }}</div>
         <div class="panel-body">
-          <p>{{ publicacion.descripcion }}</p>
-  </div>
+            <p>{{ publicacion.descripcion }}</p>
+        </div>
 
-  <!-- List group -->
-  <ul class="list-group">
-    <li class="list-group-item">{{ publicacion.fechaInicio |date('Y-m-d') }}</li>
-    <li class="list-group-item">{{ publicacion.fechaFin |date('Y-m-d') }}</li>
-    <li class="list-group-item">{{ publicacion.autor.nombres }}</li>
-  </ul>
-</div>
+        <!-- List group -->
+        <ul class="list-group">
+            <li class="list-group-item">{{ publicacion.fechaInicio |date('Y-m-d') }}</li>
+            <li class="list-group-item">{{ publicacion.fechaFin |date('Y-m-d') }}</li>
+            <li class="list-group-item">{{ publicacion.autor.nombres }}</li>
+        </ul>
+    </div>
 
-  
+    <!-- Button trigger modal -->
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Otorgar esta ayuda
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmación de ayuda</h4>
+                </div>
+                <div class="modal-body">
+                    Hola!, estás a punto de otorgar la ayuda que se solicita en la publicación {{publicacion.titulo}}. Confirma a continuación esta acción, o sigue revisando otras publicaciones...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Seguir Navegando el sitio</button>
+                    <button type="button" class="btn btn-primary">Otorgar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
 </div> <!-- /container -->
 
 {% endblock %}
