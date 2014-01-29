@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
+    {{ parent() }}
     
-    {{ include ('RedSolidariaMainBundle:componentes:navbar.html.twig') }}
+    
 
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron row">
@@ -63,6 +63,6 @@
     </div>
 
 
-</div> <!-- /container -->
+<!--</div>--> <!-- /container -->
 
 {% endblock %}

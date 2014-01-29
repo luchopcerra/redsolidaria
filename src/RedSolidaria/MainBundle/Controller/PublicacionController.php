@@ -17,7 +17,12 @@ use DateTime;
 class PublicacionController extends Controller{
     
     public function showAction($id, Request $request){
-    
+        
+        
+        
+//        $user = $this->getUser();
+//        if ($user) $rol = $user->getRoles();
+            
         
         $form = $this->createFormBuilder()
             ->add('confirmar', 'submit')

@@ -26,6 +26,11 @@
     {% endstylesheets %}
 {% endblock %}
         
+{% block body %}
+        {{ include ('RedSolidariaMainBundle:componentes:navbar.html.twig') }}
+
+{% endblock %}   
+        
 {% block javascripts %}
 {#    {% javascripts  '@RedSolidariaMainBundle/Resources/public/jquery-ui-1.10.3/jquery-1.9.1.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
