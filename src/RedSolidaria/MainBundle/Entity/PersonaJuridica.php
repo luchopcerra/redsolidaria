@@ -34,7 +34,7 @@ class PersonaJuridica extends Persona
      */
     private $razonSocial;
 
-    function __construct($username, $password, $email, $direccion, $cuit, $razonSocial) {
+    function __construct($username = "", $password = "", $email = "", $direccion = "", $cuit = "", $razonSocial = "") {
         
         parent::__construct($username,$password);
 

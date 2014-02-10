@@ -4,6 +4,7 @@ namespace RedSolidaria\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Persona
@@ -66,14 +67,11 @@ class Persona implements UserInterface, \Serializable
      */
     protected $isActive;
 
-//    function __construct($username, $password, $salt, $email, $direccion, $isActive) {
-//        $this->username = $username;
-//        $this->password = $password;
-//        $this->salt = $salt;
-//        $this->email = $email;
-//        $this->direccion = $direccion;
-//        $this->isActive = $isActive;
-//    }
+    /**
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
+     *
+     */
+    private $roles;
 
     public function __construct($username,$password) {
       
@@ -81,6 +79,7 @@ class Persona implements UserInterface, \Serializable
         $this->password = $password;
         $this->isActive = true;
         $this->salt = md5(uniqid(null, true));
+        $this->roles = new ArrayCollection();
     }
 
     /**
@@ -241,8 +240,13 @@ class Persona implements UserInterface, \Serializable
     /**
      * @inheritDoc
      */
-    public function getRoles() {
-        return array('ROLE_ADMIN');
+    public function getRoles()
+    {
+        return $this->roles->toArray();
+    }
+    
+    public function setRoles($roles) {
+        $this->roles = $roles;
     }
     
     /**

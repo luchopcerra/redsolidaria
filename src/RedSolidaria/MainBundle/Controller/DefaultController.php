@@ -40,6 +40,11 @@ class DefaultController extends Controller{
     
     }
 
+    public function adminAction(){
+
+        return $this->render('RedSolidariaMainBundle:home:indexSample.html.twig');
+    }
+
     public function indexAction(){
         $ultimasPublicaciones = $this->ultimasPublicaciones();
 //        print_r($ultimasPublicaciones);

@@ -48,7 +48,7 @@ class PersonaFisica extends Persona
      */
     protected $cuil;
     
-    function __construct($username, $password, $email, $direccion, $dni, $nombres, $apellidos, $cuil) {
+    function __construct($username = "", $password = "", $email = "", $direccion = "", $dni = "", $nombres = "", $apellidos = "", $cuil = "") {
         
         parent::__construct($username,$password);
 

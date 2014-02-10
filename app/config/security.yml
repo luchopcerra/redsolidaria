@@ -50,3 +50,6 @@ security:
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: /task_success, roles: ROLE_ADMIN }
+        - { path: /admin/personafisica/new, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /admin/personajuridica/new, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }

@@ -37,9 +37,16 @@
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li class="active"><a href="./">Default</a></li>
-                <li><a href="../navbar-static-top/">Static top</a></li>
-                <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+                <li><a href="{{ path('login') }}">Ingresar</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrarse <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('persona_fisica_new') }}">Nueva Persona Fisica</a></li>
+                        <li><a href="{{ path('persona_juridica_new') }}">Nueva Persona Juridica</a></li>
+                        <li><a href="{{ path('personafisica_new') }}">Nueva Persona Fisica</a></li>
+                        <li><a href="{{ path('personajuridica_new') }}">Nueva Persona Juridica</a></li>
+                    </ul>
+                </li>
 
             </ul>
 

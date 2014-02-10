@@ -2,6 +2,14 @@ login:
     path:   /login
     defaults:  { _controller: RedSolidariaMainBundle:Default:login }
 
+admin:
+    path:   /admin
+    defaults:  { _controller: RedSolidariaMainBundle:Default:admin }
+    
+signup:
+    path:   /signup
+    defaults:  { _controller: RedSolidariaMainBundle:Default:login }
+
 red_solidaria_main_homepage:
     pattern:  /
     defaults: { _controller: RedSolidariaMainBundle:Default:index }
@@ -24,3 +32,24 @@ login_check:
 
 logout:
     path:   /logout
+    
+RedSolidariaMainBundle_personafisica:
+    resource: "@RedSolidariaMainBundle/Resources/config/routing/personafisica.yml"
+    prefix:   /admin/personafisica
+    
+RedSolidariaMainBundle_personajuridica:
+    resource: "@RedSolidariaMainBundle/Resources/config/routing/personajuridica.yml"
+    prefix:   /personajuridica
+    
+
+
+#
+# rutas para la creacion de usuarios nuevos
+#
+persona_fisica_new:
+    pattern: /personaFisicaNew
+    defaults: { _controller: RedSolidariaMainBundle:SignUp:personaFisicaNew }
+
+persona_juridica_new:
+    pattern: /personaJuridicaNew
+    defaults: { _controller: RedSolidariaMainBundle:SignUp:personaJuridicaNew }
